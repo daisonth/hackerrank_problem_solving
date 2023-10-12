@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::io::{self, BufRead};
 
 #[derive(Default, Debug)]
 struct TrieNode {
@@ -30,58 +31,89 @@ impl Trie {
 
 fn calculate_health(
     dna: &str,
-    genes: &[&str],
+    // genes: &[String],
     health: &[usize],
     start: usize,
     end: usize,
     trie: &Trie,
-) -> i32 {
+) -> i64 {
     let mut total_health: usize = 0;
-    println!("dna : {}", dna.to_string());
-
-    for (i, c) in dna.chars().enumerate() {
+    let d: Vec<char> = dna.chars().collect();
+    for (i, _) in d.iter().enumerate() {
         let mut node = &trie.root;
         let mut j = i;
-        while j < dna.len() {
-            match node.children.get(&c) {
-                Some(n) => {
-                    node = n;
-                    for &index in &node.indexes {
-                        if index >= start && index <= end && genes[index] == &dna[i..=j] {
-                            total_health += health[index];
-                        }
-                    }
+        while j < dna.len() && node.children.contains_key(&d[j]) {
+            node = &node.children[&d[j]];
+            for &index in &node.indexes {
+                if index >= start && index <= end {
+                    // if index >= start && index <= end && &genes[index] == &dna[i..=j] {
+                    total_health += health[index];
                 }
-                None => break,
             }
             j += 1;
         }
     }
-    total_health as i32
+    total_health as i64
 }
 
 fn main() {
-    let mut trie: Trie = Trie::new();
+    let stdin = io::stdin();
+    let mut lines = stdin.lock().lines();
 
-    let genes: Vec<&str> = "a b c aa d b".split_whitespace().collect::<Vec<&str>>();
+    lines.next();
 
-    let health: Vec<usize> = "1 2 3 4 5 6"
+    let genes: Vec<String> = lines
+        .next()
+        .unwrap()
+        .unwrap()
+        .trim_end()
         .split_whitespace()
-        .map(|c| c.parse::<usize>().unwrap())
-        .collect::<Vec<usize>>();
+        .map(|s| s.to_string())
+        .collect();
 
-    let mut strand = "1 5 caaab".split_whitespace().into_iter();
+    let health: Vec<usize> = lines
+        .next()
+        .unwrap()
+        .unwrap()
+        .trim_end()
+        .split_whitespace()
+        .map(|s| s.parse::<usize>().unwrap())
+        .collect();
 
+    let s: usize = lines
+        .next()
+        .unwrap()
+        .unwrap()
+        .trim_end()
+        .parse::<usize>()
+        .unwrap();
+
+    let mut trie: Trie = Trie::new();
     for (index, gene) in genes.iter().enumerate() {
         trie.insert(index, gene);
-        println!("{index}, {gene}");
     }
 
-    let start: usize = strand.next().unwrap().parse::<usize>().unwrap();
-    let end: usize = strand.next().unwrap().parse::<usize>().unwrap();
-    let dna: &str = strand.next().unwrap();
+    let mut min = i64::MAX;
+    let mut max = i64::MIN;
 
-    let total_health = calculate_health(dna, &genes, &health, start, end, &trie);
+    for _ in 0..s {
+        let strand: Vec<String> = lines
+            .next()
+            .unwrap()
+            .unwrap()
+            .split_whitespace()
+            .map(|i| i.to_string())
+            .collect();
 
-    println!("total health : {}", total_health);
+        let start: usize = strand[0].parse::<usize>().unwrap();
+        let end: usize = strand[1].parse::<usize>().unwrap();
+        let dna: &str = &strand[2];
+
+        // let total_health = calculate_health(dna, &genes, &health, start, end, &trie);
+        let total_health = calculate_health(dna, &health, start, end, &trie);
+
+        min = min.min(total_health);
+        max = max.max(total_health);
+    }
+    println!("{} {}", min, max);
 }
