@@ -16,8 +16,9 @@ fn largest_palindrome_concat(a: &str, b: &str) -> String {
                     let sub_b = &b[k..=l];
                     let combined = format!("{}{}", sub_a, sub_b);
                     if is_palindrome(&combined) {
-                        if combined.len() > max_palindrome.len() 
-                            || (combined.len() == max_palindrome.len() && combined < max_palindrome) {
+                        if combined.len() > max_palindrome.len()
+                            || (combined.len() == max_palindrome.len() && combined < max_palindrome)
+                        {
                             max_palindrome = combined;
                         }
                     }
