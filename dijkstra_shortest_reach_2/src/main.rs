@@ -1,9 +1,10 @@
+use std::env;
+use std::fs::File;
+use std::io::{self, BufRead, Write};
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-use std::fs::File;
-use std::io::{Read, Result};
 
-fn shortest_reach(n: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
+fn shortestReach(n: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
     let start: usize = s as usize - 1;
     let mut vis: Vec<bool> = vec![false; n as usize]; // visited nodes
     let mut dist: Vec<i32> = vec![-1; n as usize]; // distances
@@ -41,34 +42,51 @@ fn shortest_reach(n: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
     dist.remove(start);
 
     dist
+
 }
 
-fn main() -> Result<()> {
-    let mut file = File::open("./src/input").unwrap();
-    let mut input: String = String::new();
-    file.read_to_string(&mut input)?;
-    let mut lines = input.lines();
+fn main() {
+    let stdin = io::stdin();
+    let mut stdin_iterator = stdin.lock().lines();
 
-    let mut line = lines.next().unwrap().trim_end().split_whitespace();
-    let n = line.next().unwrap().parse::<i32>().unwrap();
-    let m = line.next().unwrap().parse::<i32>().unwrap();
-    let mut edges: Vec<Vec<i32>> = Vec::new();
+    let mut fptr = File::create(env::var("OUTPUT_PATH").unwrap()).unwrap();
 
-    for _ in 0..m {
-        edges.push(
-            lines
-                .next()
-                .unwrap()
+    let t = stdin_iterator.next().unwrap().unwrap().trim().parse::<i32>().unwrap();
+
+    for _ in 0..t {
+        let first_multiple_input: Vec<String> = stdin_iterator.next().unwrap().unwrap()
+            .split(' ')
+            .map(|s| s.to_string())
+            .collect();
+
+        let n = first_multiple_input[0].trim().parse::<i32>().unwrap();
+
+        let m = first_multiple_input[1].trim().parse::<i32>().unwrap();
+
+        let mut edges: Vec<Vec<i32>> = Vec::with_capacity(m as usize);
+
+        for i in 0..m as usize {
+            edges.push(Vec::with_capacity(3_usize));
+
+            edges[i] = stdin_iterator.next().unwrap().unwrap()
                 .trim_end()
-                .split_whitespace()
-                .map(|x| x.parse::<i32>().unwrap())
-                .collect(),
-        );
+                .split(' ')
+                .map(|s| s.to_string().parse::<i32>().unwrap())
+                .collect();
+        }
+
+        let s = stdin_iterator.next().unwrap().unwrap().trim().parse::<i32>().unwrap();
+
+        let result = shortestReach(n, &edges, s);
+
+        for i in 0..result.len() {
+            write!(&mut fptr, "{}", result[i]).ok();
+
+            if i != result.len() - 1 {
+                write!(&mut fptr, " ").ok();
+            }
+        }
+
+        writeln!(&mut fptr).ok();
     }
-
-    let start = lines.next().unwrap().trim_end().parse::<i32>().unwrap();
-
-    println!("{:?}", shortest_reach(n, &edges, start));
-
-    Ok(())
 }
