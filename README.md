@@ -31,10 +31,10 @@
   - [Solution](./determining_dna_health/src/main.rs)
   - **Explanation** : here we begins by storing genes and their health values in a Trie data structure for efficient search. Then, for each DNA strand, we searches the Trie to find matching genes character by character and calculates the total health by summing up the associated health values. we keeps track of the minimum and maximum health values among all the DNA strands and prints them, helping determine the healthiest and least healthy DNA strands based on the provided genes and their health values.
    
-## 7. Roads in HackerLand
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+## 7. Common Child
+  - [Problem](https://www.hackerrank.com/challenges/common-child) 
+  - [Solution](./common_child/src/main.rs)
+  - **Explanation** : function commonChild,finds the length of the longest common subsequence between two input strings, s1 and s2, using dynamic programming. It compares each character of s1 with each character of s2 and constructs a two-dimensional matrix dp to track the length of common subsequences. When characters match, it increments the count, and when they differ, it takes the maximum value from adjacent cells. The final value in dp[s1.len()][s2.len()] represents the length of the longest common subsequence. Essentially, it efficiently computes the length of the longest shared sequence of characters between the two input strings.
    
 ## 8. The Maximum Subarray
   - [Problem]() 
