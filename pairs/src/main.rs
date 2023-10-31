@@ -1,5 +1,6 @@
-use std::fs;
-use std::io::Read;
+use std::env;
+use std::fs::File;
+use std::io::{self, BufRead, Write};
 
 fn pairs(k: i32, arr: &[i32]) -> i32 {
     let mut sum: i32 = 0;
@@ -18,25 +19,28 @@ fn pairs(k: i32, arr: &[i32]) -> i32 {
     sum
 }
 
-fn main() -> std::io::Result<()> {
-    let mut file = fs::File::open("./src/input")?;
-    let mut input: String = String::new();
-    file.read_to_string(&mut input)?;
-    let mut lines = input.lines();
+fn main() {
+    let stdin = io::stdin();
+    let mut stdin_iterator = stdin.lock().lines();
 
-    let mut ln = lines.next().unwrap().trim_end().split_whitespace();
-    ln.next();
+    let mut fptr = File::create(env::var("OUTPUT_PATH").unwrap()).unwrap();
 
-    let diff = ln.next().unwrap().parse::<i32>().unwrap();
-    let arr = lines
-        .next()
-        .unwrap()
+    let first_multiple_input: Vec<String> = stdin_iterator.next().unwrap().unwrap()
+        .split(' ')
+        .map(|s| s.to_string())
+        .collect();
+
+    let n = first_multiple_input[0].trim().parse::<i32>().unwrap();
+
+    let k = first_multiple_input[1].trim().parse::<i32>().unwrap();
+
+    let arr: Vec<i32> = stdin_iterator.next().unwrap().unwrap()
         .trim_end()
-        .split_whitespace()
-        .map(|x| x.parse::<i32>().unwrap())
-        .collect::<Vec<i32>>();
+        .split(' ')
+        .map(|s| s.to_string().parse::<i32>().unwrap())
+        .collect();
 
-    println!("{}", pairs(diff, &arr));
+    let result = pairs(k, &arr);
 
-    Ok(())
+    writeln!(&mut fptr, "{}", result).ok();
 }
