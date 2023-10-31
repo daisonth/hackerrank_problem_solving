@@ -1,8 +1,17 @@
 use std::fs;
 use std::io::Read;
 
+// function, 'stringSimilarity', figures out how much the beginning of a word is similar to its
+// endings. It does this by checking the number of characters at the start of the word that are
+// also at the start of its different parts. The more characters they have in common, the higher
+// the similarity. It adds up these similarities for all parts of the word and gives you the total
+// similarity score. This way, it helps you see how much the beginning of the word matches with the
+// beginnings of its parts.
+
 fn string_similarity(s: &str) -> i64 {
+    // convert string 's' into bytes for efficient character access.
     let v = s.as_bytes();
+
     let len = v.len();
     let mut n: usize = 1;
     let mut sum: i64 = len as i64;

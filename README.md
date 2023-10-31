@@ -22,9 +22,9 @@
   - **Explanation** : function, 'pairs', counts the number of pairs in an array of integers that have a specific target difference 'k'. It achieves this by sorting the input array, iterating through each pair of elements, and checking if their difference equals 'k'. If a pair with the desired difference is found, it increments a count. The function then returns the count, which represents the number of pairs with the specified difference 'k' in the array.
    
 ## 5. String Similarity
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+  - [Problem](https://www.hackerrank.com/challenges/string-similarity/problem) 
+  - [Solution](./string_similarity/src/main.rs)
+  - **Explanation** : function, 'stringSimilarity', figures out how much the beginning of a word is similar to its endings. It does this by checking the number of characters at the start of the word that are also at the start of its different parts. The more characters they have in common, the higher the similarity. It adds up these similarities for all parts of the word and gives you the total similarity score. This way, it helps you see how much the beginning of the word matches with the beginnings of its parts.
    
 ## 6. Determining DNA Health
   - [Problem]() 
