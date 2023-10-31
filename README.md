@@ -27,9 +27,9 @@
   - **Explanation** : function, 'stringSimilarity', figures out how much the beginning of a word is similar to its suffixes. It does this by checking the number of characters at the start of the word that are also at the start of its different suffixes. The more characters they have in common, the higher the similarity. It adds up these similarities for all suffixes of the word and returns the total similarity score. 
    
 ## 6. Determining DNA Health
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+  - [Problem](https://www.hackerrank.com/challenges/determining-dna-health) 
+  - [Solution](./determining_dna_health/src/main.rs)
+  - **Explanation** : here we begins by storing genes and their health values in a Trie data structure for efficient search. Then, for each DNA strand, we searches the Trie to find matching genes character by character and calculates the total health by summing up the associated health values. we keeps track of the minimum and maximum health values among all the DNA strands and prints them, helping determine the healthiest and least healthy DNA strands based on the provided genes and their health values.
    
 ## 7. Roads in HackerLand
   - [Problem]() 

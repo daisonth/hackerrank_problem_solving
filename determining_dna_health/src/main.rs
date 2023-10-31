@@ -1,6 +1,13 @@
 use std::collections::HashMap;
 use std::io::{self, BufRead};
 
+// here we begins by storing genes and their health values in a Trie data structure for efficient
+// search. Then, for each DNA strand, we searches the Trie to find matching genes character by
+// character and calculates the total health by summing up the associated health values. we keeps
+// track of the minimum and maximum health values among all the DNA strands and prints them,
+// helping determine the healthiest and least healthy DNA strands based on the provided genes and
+// their health values.
+
 #[derive(Default, Debug)]
 struct TrieNode {
     indexes: Vec<usize>,
