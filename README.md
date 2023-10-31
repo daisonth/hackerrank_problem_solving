@@ -46,8 +46,7 @@
   - [Solution](./Time_conversion/src/main.rs)
   - **Explanation** : function, timeConversion, takes a 12-hour time string and converts it to a 24-hour format. It first checks whether it's morning or evening by examining the last character ('A' or 'P'). If it's morning ('A'), and the hour is '12', it changes it to '00'; otherwise, it leaves it as is. If it's evening ('P'), it adds 12 to the hour, except if it's already '12'. The minutes and seconds are retained, and the result is returned as a 24-hour time string
    
-## 10. Almost Sorted
-  - [Problem](https://www.hackerrank.com/challenges/almost-sorted/problem) 
-  - [Solution](./almost_sorted/src/main.rs)
-  - **Explanation** : 
-   
+## 10. Sherlock and Anagrams
+  - [Problem](https://www.hackerrank.com/challenges/sherlock-and-anagrams) 
+  - [Solution](./sherlock_and_anagrams/src/main.rs)
+  - **Explanation** : Here we uses a HashMap with substrings of the input string as keys and integers as values to count occurrences. Then we insert all the substring of the given string into the hashmap, if the substring already exists then we increment the count. Finally, we calculates the number of anagram pairs by summing up combinations for each signature and returns this count. 
