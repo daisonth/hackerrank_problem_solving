@@ -36,10 +36,10 @@
   - [Solution](./common_child/src/main.rs)
   - **Explanation** : function commonChild,finds the length of the longest common subsequence between two input strings, s1 and s2, using dynamic programming. It compares each character of s1 with each character of s2 and constructs a two-dimensional matrix dp to track the length of common subsequences. When characters match, it increments the count, and when they differ, it takes the maximum value from adjacent cells. The final value in dp[s1.len()][s2.len()] represents the length of the longest common subsequence. Essentially, it efficiently computes the length of the longest shared sequence of characters between the two input strings.
    
-## 8. The Maximum Subarray
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+## 8. Candies
+  - [Problem](https://www.hackerrank.com/challenges/candies) 
+  - [Solution](./candies/src/main.rs)
+  - **Explanation** : here we start by giving each child one candy and then goes through the children's ratings. If a child has a higher rating than the one before, they get one more candy than the previous child. It also checks from the right to the left, making sure that if a child has a lower rating than the one after and has the same or more candies, they get one more candy than the child after. This way, it ensures that higher-rated children get more candies, and it balances the distribution, minimizing the total number of candies Alice needs to purchase.
    
 ## 9. Time Conversion
   - [Problem](https://www.hackerrank.com/challenges/time-conversion/problem) 
@@ -47,7 +47,7 @@
   - **Explanation** : function, timeConversion, takes a 12-hour time string and converts it to a 24-hour format. It first checks whether it's morning or evening by examining the last character ('A' or 'P'). If it's morning ('A'), and the hour is '12', it changes it to '00'; otherwise, it leaves it as is. If it's evening ('P'), it adds 12 to the hour, except if it's already '12'. The minutes and seconds are retained, and the result is returned as a 24-hour time string
    
 ## 10. Almost Sorted
-  - [Problem]() 
-  - [Solution]()
+  - [Problem](https://www.hackerrank.com/challenges/almost-sorted/problem) 
+  - [Solution](./almost_sorted/src/main.rs)
   - **Explanation** : 
    
