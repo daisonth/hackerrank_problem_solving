@@ -1,26 +1,15 @@
+use std::env;
+use std::fs::File;
+use std::io::{self, BufRead, Write};
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-use std::fs::File;
-use std::io::{Read, Result};
 
-// The `lazy_prims` function implements the lazy version of Prim's algorithm for finding
-// the minimum spanning tree (MST) in a weighted graph. It takes as input the number of nodes
-// `num`, a list of edges represented as tuples with their endpoints and weights, and a starting
-// node `start`. The function initializes a priority queue (`pq`) to track edges, a boolean
-// array(vis) to mark visited nodes, and an adjacency list(g) to represent the weighted graph. It starts
-// from the specified node, continually adds the minimum-weight edge connecting the MST to the
-// unvisited nodes, and updates the priority queue accordingly. This process continues until the
-// MST has n-1 edges (where n is the number of nodes). The function returns the total cost of the
-// MST. In summary, the code constructs an MST in a graph by iteratively selecting the shortest
-// edge connected to the growing MST.
-
-fn lazy_prims(num: i32, edges: &[Vec<i32>], start: i32) -> usize {
+fn prims(num: i32, edges: &[Vec<i32>], start: i32) -> usize {
     let n = num as usize; // number of nodes in the graph
     let s = start as usize - 1; // make starting node 0 (for easy indexing)
     let mut pq = BinaryHeap::new(); // priority queue
     let mut vis: Vec<bool> = vec![false; n as usize]; // visited nodes
     let mut g: Vec<Vec<(i32, i32)>> = vec![Vec::new(); n as usize]; // adjacency list of weighted graph
-                                                                    
     for edge in edges {
         g[edge[0] as usize - 1].push((edge[1] - 1, edge[2]));
         g[edge[1] as usize - 1].push((edge[0] - 1, edge[2]));
@@ -59,33 +48,38 @@ fn lazy_prims(num: i32, edges: &[Vec<i32>], start: i32) -> usize {
     mstcost
 }
 
-fn main() -> Result<()> {
+
+fn main() {
     //read input from file called "input"
-    let mut file = File::open("./src/input").unwrap();
-    let mut input: String = String::new();
-    file.read_to_string(&mut input)?;
-    let mut lines = input.lines();
+    let stdin = io::stdin();
+    let mut stdin_iterator = stdin.lock().lines();
 
-    let mut line = lines.next().unwrap().trim_end().split_whitespace();
-    let n = line.next().unwrap().parse::<i32>().unwrap();
-    let m = line.next().unwrap().parse::<i32>().unwrap();
-    let mut edges: Vec<Vec<i32>> = Vec::new();
+    let mut fptr = File::create(env::var("OUTPUT_PATH").unwrap()).unwrap();
 
-    for _ in 0..m {
-        edges.push(
-            lines
-                .next()
-                .unwrap()
-                .trim_end()
-                .split_whitespace()
-                .map(|x| x.parse::<i32>().unwrap())
-                .collect(),
-        );
+    let first_multiple_input: Vec<String> = stdin_iterator.next().unwrap().unwrap()
+        .split(' ')
+        .map(|s| s.to_string())
+        .collect();
+
+    let n = first_multiple_input[0].trim().parse::<i32>().unwrap();
+
+    let m = first_multiple_input[1].trim().parse::<i32>().unwrap();
+
+    let mut edges: Vec<Vec<i32>> = Vec::with_capacity(m as usize);
+
+    for i in 0..m as usize {
+        edges.push(Vec::with_capacity(3_usize));
+
+        edges[i] = stdin_iterator.next().unwrap().unwrap()
+            .trim_end()
+            .split(' ')
+            .map(|s| s.to_string().parse::<i32>().unwrap())
+            .collect();
     }
 
-    let start = lines.next().unwrap().trim_end().parse::<i32>().unwrap();
+    let start = stdin_iterator.next().unwrap().unwrap().trim().parse::<i32>().unwrap();
 
-    println!("{:?}", lazy_prims(n, &edges, start));
+    let result = prims(n, &edges, start);
 
-    Ok(())
+    writeln!(&mut fptr, "{}", result).ok();
 }
