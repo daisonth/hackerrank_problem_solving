@@ -1,14 +1,52 @@
 # Hackerrank Solutions In RUST
 
-1. **Prim's (MST) : Special Subtree**
-- Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
+## 1. Prim's (MST) : Special Subtree
+  - [Problem](https://www.hackerrank.com/challenges/almost-sorted/problem) 
+  - [Solution](./prims_special_subtree/src/main.rs)
+  - **Explanation** :  The `lazy_prims` function implements the lazy version of Prim's algorithm for finding the minimum spanning tree (MST) in a weighted graph. It takes as input the number of nodes `num`, a list of edges represented as tuples with their endpoints and weights, and a starting node `start`. The function initializes a priority queue (`pq`) to track edges, a boolean array(vis) to mark visited nodes, and an adjacency list(g) to represent the weighted graph. It starts from the specified node, continually adds the minimum-weight edge connecting the MST to the unvisited nodes, and updates the priority queue accordingly. This process continues until the MST has n-1 edges (where n is the number of nodes). The function returns the total cost of the MST. In summary, the code constructs an MST in a graph by iteratively selecting the shortest edge connected to the growing MST.
  
-3. Dijkstra: Shortest Reach 2
-4. Morgan and a String
-5. Repetitive K-Sums
-6. String Similarity
-7. Determining DNA Health
-8. Roads in HackerLand
-9. he Maximum Subarray
-10. Connected Cells in a Grid
-11. Almost Sorted
+## 2. Dijkstra: Shortest Reach 2
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 3. Morgan and a String
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 4. Repetitive K-Sums
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 5. String Similarity
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 6. Determining DNA Health
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 7. Roads in HackerLand
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 8. he Maximum Subarray
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 9. Connected Cells in a Grid
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
+## 10. Almost Sorted
+  - [Problem]() 
+  - [Solution]()
+  - **Explanation** : 
+   
