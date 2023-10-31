@@ -14,13 +14,12 @@
   - [Problem](https://www.hackerrank.com/challenges/morgan-and-a-string/problem) 
   - [Solution](./morgan_and_a_string/src/main.rs)
   - **Explanation** : function, morganAndString, takes two input strings 'a' and 'b' and merges them to create a new string. The goal is to make sure the new string is as small as possible when compared lexicographically.
-  
-  Here's how it works: It starts with the first characters of 'a' and 'b'. It picks the smaller character and adds it to the result 'r'. Then, it removes that character from its respective input string. This process continues until it's done. To ensure it can compare until the end, it adds a 'z' to both 'a' and 'b'. Finally, it removes any trailing 'z' and gives you the merged string 'r'. This way, it ensures the result is as small as possible while respecting the order of 'a' and 'b'.
+    Here's how it works: It starts with the first characters of 'a' and 'b'. It picks the smaller character and adds it to the result 'r'. Then, it removes that character from its respective input string. This process continues until it's done. To ensure it can compare until the end, it adds a 'z' to both 'a' and 'b'. Finally, it removes any trailing 'z' and gives you the merged string 'r'. This way, it ensures the result is as small as possible while respecting the order of 'a' and 'b'.
    
-## 4. Repetitive K-Sums
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+## 4. Pairs
+  - [Problem](https://www.hackerrank.com/challenges/pairs/problem) 
+  - [Solution](./pairs/src/main.rs)
+  - **Explanation** : function, 'pairs', counts the number of pairs in an array of integers that have a specific target difference 'k'. It achieves this by sorting the input array, iterating through each pair of elements, and checking if their difference equals 'k'. If a pair with the desired difference is found, it increments a count. The function then returns the count, which represents the number of pairs with the specified difference 'k' in the array.
    
 ## 5. String Similarity
   - [Problem]() 
