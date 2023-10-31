@@ -24,7 +24,7 @@
 ## 5. String Similarity
   - [Problem](https://www.hackerrank.com/challenges/string-similarity/problem) 
   - [Solution](./string_similarity/src/main.rs)
-  - **Explanation** : function, 'stringSimilarity', figures out how much the beginning of a word is similar to its endings. It does this by checking the number of characters at the start of the word that are also at the start of its different parts. The more characters they have in common, the higher the similarity. It adds up these similarities for all parts of the word and gives you the total similarity score. This way, it helps you see how much the beginning of the word matches with the beginnings of its parts.
+  - **Explanation** : function, 'stringSimilarity', figures out how much the beginning of a word is similar to its suffixes. It does this by checking the number of characters at the start of the word that are also at the start of its different suffixes. The more characters they have in common, the higher the similarity. It adds up these similarities for all suffixes of the word and returns the total similarity score. 
    
 ## 6. Determining DNA Health
   - [Problem]() 
