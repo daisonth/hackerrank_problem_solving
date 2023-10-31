@@ -41,10 +41,10 @@
   - [Solution]()
   - **Explanation** : 
    
-## 9. Connected Cells in a Grid
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+## 9. Time Conversion
+  - [Problem](https://www.hackerrank.com/challenges/time-conversion/problem) 
+  - [Solution](./Time_conversion/src/main.rs)
+  - **Explanation** : function, timeConversion, takes a 12-hour time string and converts it to a 24-hour format. It first checks whether it's morning or evening by examining the last character ('A' or 'P'). If it's morning ('A'), and the hour is '12', it changes it to '00'; otherwise, it leaves it as is. If it's evening ('P'), it adds 12 to the hour, except if it's already '12'. The minutes and seconds are retained, and the result is returned as a 24-hour time string
    
 ## 10. Almost Sorted
   - [Problem]() 
