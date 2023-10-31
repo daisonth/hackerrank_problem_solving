@@ -11,9 +11,10 @@
   - **Explanation** : This `shortestReach` function, implements Dijkstra's algorithm to find the shortest distances from a specified source node 's' to all other nodes in a weighted graph. It takes three parameters: 'n' representing the number of nodes in the graph, 'edges' as a vector of vectors representing the edges and their weights, and 's' as the source node. The function initializes vector vis to keep track of visited nodes, vector dist for distances, and priority queue (pq) for node traversal. It constructs an adjacency list for the graph based on the input edges. The algorithm then iteratively explores the graph, starting from the source node and updating the shortest distances as it goes. It uses a priority queue to choose the node with the minimum distance, explores its neighbors, and relaxes the distances if a shorter path is found. Finally, it returns a vector containing the shortest distances from the source node to all other nodes in the graph.
    
 ## 3. Morgan and a String
-  - [Problem]() 
-  - [Solution]()
-  - **Explanation** : 
+  - [Problem](https://www.hackerrank.com/challenges/morgan-and-a-string/problem) 
+  - [Solution](./morgan_and_a_string/src/main.rs)
+  - **Explanation** : function, morganAndString, takes two input strings 'a' and 'b' and merges them to create a new string. The goal is to make sure the new string is as small as possible when compared lexicographically.
+> Here's how it works: It starts with the first characters of 'a' and 'b'. It picks the smaller character and adds it to the result 'r'. Then, it removes that character from its respective input string. This process continues until it's done. To ensure it can compare until the end, it adds a 'z' to both 'a' and 'b'. Finally, it removes any trailing 'z' and gives you the merged string 'r'. This way, it ensures the result is as small as possible while respecting the order of 'a' and 'b'.
    
 ## 4. Repetitive K-Sums
   - [Problem]() 
@@ -35,7 +36,7 @@
   - [Solution]()
   - **Explanation** : 
    
-## 8. he Maximum Subarray
+## 8. The Maximum Subarray
   - [Problem]() 
   - [Solution]()
   - **Explanation** : 
