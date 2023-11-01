@@ -43,7 +43,7 @@ fn sherlock_and_anagrams(s: &str) -> usize {
         }
     }
 
-    // Convert the count to i32 and return it.
+    //return final count.
     count
 }
 
