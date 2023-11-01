@@ -17,7 +17,7 @@ I've successfully completed a code review meeting and received valuable feedback
   - By running multiple tests i was able remove an if statement from my code. This significanly increased the runtime speed. 
 
 ## Contributors:
-  - I would like to extend a special thanks to **Amal Shehu** for their invaluable feedback. He carefully reviewed every line of my code and were able to identify improvements that could enhance its readability and optimization.. 
+  - I would like to extend a special thanks to **Amal Shehu** for their invaluable feedback. He carefully reviewed every line of my code and were able to identify improvements that could enhance code readability and optimization.. 
 
 ## Impact: 
   - After incorporating all the suggested improvements and changes, my code became easier to read and understand without needing further explanation. Additionally, after the refactor, my code became more optimized and faster..
