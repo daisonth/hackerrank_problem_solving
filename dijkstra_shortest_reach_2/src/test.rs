@@ -3,7 +3,7 @@ use std::collections::BinaryHeap;
 use std::fs::File;
 use std::io::{Read, Result};
 
-// This Rust function, named shortestReach, implements Dijkstra's algorithm to find the shortest
+// This function, shortestReach, implements Dijkstra's algorithm to find the shortest
 // distances from a specified source node 's' to all other nodes in a weighted graph. It takes
 // three parameters: 'n' representing the number of nodes in the graph, 'edges' as a vector of
 // vectors representing the edges and their weights, and 's' as the source node. The function

@@ -1,48 +1,73 @@
 use std::collections::HashMap;
-use std::fs;
-use std::io::Read;
+use std::env;
+use std::fs::File;
+use std::io::{self, BufRead, Write};
 
-fn sherlock_and_anagrams(s: &str) -> i32 {
+/*
+ * - The function accepts string slice(&str) s as parameter.
+ * - This function return an i32 value which is the number of unordered anagrammatic pairs of substrings in s.
+ */
+
+fn sherlock_and_anagrams(s: &str) -> usize {
+    // Convert the input string into a vector of bytes.
     let vec = s.as_bytes();
+
+    // Initialize a counter for counting anagrammatic pairs.
     let mut count: usize = 0;
-    let mut map: HashMap<Vec<u8>, usize> = HashMap::new();
 
-    let len = vec.len();
-    for i in 1..len {
+    // Create a HashMap to store sorted substrings and their counts.
+    let mut set: HashMap<Vec<u8>, usize> = HashMap::new();
+
+    // Iterate through different substring lengths, starting from 1.
+    for i in 1..vec.len() {
+        // Iterate over all substrings of length 'i'.
         for j in vec.windows(i) {
-            let mut k: Vec<u8> = j.to_vec();
-            k.sort();
-            if map.contains_key(&k) {
-                let v = map.get(&k).unwrap();
-                map.insert(k, v + 1);
-            } else {
-                map.insert(k, 1);
-            }
+            // Convert the current substring to a Vec<u8> and sort it.
+            let mut sorted_substring: Vec<u8> = j.to_vec();
+
+            // Sort the characters in the substring to create a canonical representation
+            // that allows us to group anagrams together for counting.
+            sorted_substring.sort();
+
+            // Check if the sorted substring exists in the HashMap and update its count.
+            let v = set.entry(sorted_substring.clone()).or_insert(0);
+            *v += 1;
         }
     }
 
-    for (_, value) in map.iter() {
-        if value > &1 {
-            for i in 1..*value {
-                count += value - i;
-            }
+    // Iterate through the HashMap to count anagrammatic pairs.
+    for (_, value) in set.iter() {
+        for i in 1..*value {
+            // For each count of sorted substrings, calculate the number of pairs.
+            count += value - i;
         }
     }
-    count as i32
+
+    // Convert the count to i32 and return it.
+    count
 }
 
-fn main() -> std::io::Result<()> {
-    let mut file = fs::File::open("./src/input")?;
-    let mut input: String = String::new();
-    file.read_to_string(&mut input)?;
-    let mut lines = input.lines();
+fn main() {
+    let stdin = io::stdin();
+    let mut stdin_iterator = stdin.lock().lines();
 
-    let n = lines.next().unwrap().parse::<usize>().unwrap();
+    let mut fptr = File::create(env::var("OUTPUT_PATH").unwrap()).unwrap();
 
-    for _ in 0..n {
-        let str = lines.next().unwrap().trim_end();
-        println!("{}", sherlock_and_anagrams(&str));
+    // read q (number of queries)
+    let q = stdin_iterator
+        .next()
+        .unwrap()
+        .unwrap()
+        .trim()
+        .parse::<i32>()
+        .unwrap();
+
+    // for each q lines read string s
+    for _ in 0..q {
+        let s = stdin_iterator.next().unwrap().unwrap();
+
+        let result = sherlock_and_anagrams(&s);
+
+        writeln!(&mut fptr, "{}", result).ok();
     }
-
-    Ok(())
 }
